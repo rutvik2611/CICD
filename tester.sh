@@ -1,5 +1,3 @@
-echo "You are awesome"
-
 #!/bin/bash
 
 # Detect which OS this script is being run on
@@ -21,8 +19,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     
     # Change default shell to zsh
     read -p "Time to change your default shell to zsh? (Y/n): " response
-    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
-    then
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
         chsh -s $(which zsh)
         echo "Your default shell has been changed to zsh. Please logout and login again in order for changes to take effect."
     fi
@@ -37,3 +34,5 @@ else
   echo "This script is currently only supported on Linux OS."
   exit 1
 fi
+
+echo "You are awesome"
