@@ -19,14 +19,35 @@ sudo apt-get install -yqq \
         apache2-utils \
         filezilla
 
+# echo "Adding Docker’s official GPG key..."
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# echo "Adding Docker repository for Ubuntu..."
+# sudo add-apt-repository -y \
+#     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+#         $(lsb_release -cs) \
+#         stable"
+#!/bin/bash
+
+# Adding Docker’s official GPG key
 echo "Adding Docker’s official GPG key..."
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
+# Adding Docker repository for Ubuntu
 echo "Adding Docker repository for Ubuntu..."
-yes "" | sudo add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-        $(lsb_release -cs) \
-        stable"
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+# Installing Docker engine
+echo "Installing Docker engine..."
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+# Installing Docker Compose
+echo "Installing Docker Compose..."
+sudo curl -sL "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+
+
 
 echo "Updating apt-get..."
 sudo apt-get update 
