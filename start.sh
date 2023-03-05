@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# curl -s https://raw.githubusercontent.com/rutvik2611/CICD/main/start.sh | bash
+
+
 echo "Starting installation process..."
 
 echo "Updating apt-get..."
@@ -20,7 +23,7 @@ echo "Adding Docker’s official GPG key..."
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
 echo "Adding Docker repository for Ubuntu..."
-sudo add-apt-repository \
+yes "" | sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
         $(lsb_release -cs) \
         stable"
