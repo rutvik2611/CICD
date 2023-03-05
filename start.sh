@@ -79,7 +79,7 @@ else
     done
 
     while true; do
-        read -p "Which script would you like to run? Enter a number: " choice
+        read -p "Which script would you like to run? Enter a number: " -n 1 choice
         if ! [[ "$choice" =~ ^[0-9]+$ ]] || ((choice < 1 || choice > ${#SCRIPTS[@]})); then
             echo "Invalid choice!"
         else
