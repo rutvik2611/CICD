@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # curl -s https://raw.githubusercontent.com/rutvik2611/CICD/main/start.sh | bash
+# curl -o script.sh https://raw.githubusercontent.com/rutvik2611/CICD/main/start.sh && bash script.sh
 
 
 echo "Starting installation process..."
@@ -93,7 +94,7 @@ else
     fi
 
     # Run the selected script
-    script_path="$script_dir${scripts[$choice]}"
+    script_path="$script_dir/${scripts[$choice]}"
     bash "$script_path"
 fi
 
