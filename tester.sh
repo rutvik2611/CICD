@@ -18,6 +18,14 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   
     # Set random theme
     sed -i 's/ZSH_THEME=.*/ZSH_THEME=random/' ~/.zshrc
+    
+    # Change default shell to zsh
+    read -p "Time to change your default shell to zsh? (Y/n): " response
+    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]
+    then
+        chsh -s $(which zsh)
+        echo "Your default shell has been changed to zsh. Please logout and login again in order for changes to take effect."
+    fi
   
     # Source .zshrc to apply changes
     source ~/.zshrc
@@ -28,3 +36,4 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 else
   echo "This script is currently only supported on Linux OS."
 fi
+
