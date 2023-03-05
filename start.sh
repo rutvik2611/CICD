@@ -39,6 +39,11 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-
 echo "Installation process completed successfully!"
 
 
+echo "Cloning https://github.com/rutvik2611/CICD.git"
+git clone https://github.com/rutvik2611/CICD.git
+
+cd CICD
+
 SCRIPTS=(*.sh)
 
 if [ ${#SCRIPTS[@]} -eq 0 ]; then
