@@ -1,0 +1,18 @@
+version: '3'
+services:
+  jenkins:
+    image: jenkins/jenkins:latest
+    container_name: jenkins-master
+    ports:
+      - "${JENKINS_PORT}:8080"
+    environment:
+      - JENKINS_SLAVE_AGENT_PORT=${JENKINS_SLAVE_AGENT_PORT}
+  jenkins-slave:
+    image: jenkins/inbound-agent:latest
+    container_name: jenkins-slave
+    environment:
+      - JENKINS_URL=http://jenkins:8080
+      - JENKINS_SECRET=${JENKINS_SECRET}
+      - JENKINS_AGENT_NAME=${JENKINS_AGENT_NAME}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
