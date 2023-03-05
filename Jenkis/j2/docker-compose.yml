@@ -41,13 +41,13 @@ jenkins_master:
 # slave docker compose
 # cd ~/jnlp_slave
 # docker-compose -f jenkins-slave-docker-compose.yml up -d
-jenkins_slave:
-  image: jenkins/jnlp-slave
-  container_name: jnlp_slave
-  user: root
-  command: -url http://192.168.8.113:8080 <secret> <jenkins_slave>
-  restart: always
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-    - /usr/bin/docker:/usr/bin/docker
-    - $HOME/jnlp_slave:/var/jenkins_home
+# jenkins_slave:
+#   image: jenkins/jnlp-slave
+#   container_name: jnlp_slave
+#   user: root
+#   command: -url http://192.168.8.113:8080 <secret> <jenkins_slave>
+#   restart: always
+#   volumes:
+#     - /var/run/docker.sock:/var/run/docker.sock
+#     - /usr/bin/docker:/usr/bin/docker
+#     - $HOME/jnlp_slave:/var/jenkins_home
