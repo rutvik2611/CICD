@@ -5,22 +5,14 @@ services:
     container_name: jenkins-master
     ports:
       - "${JENKINS_PORT}:8080"
-    volumes:
-      - jenkins_data:/var/jenkins_home
     environment:
-      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
-      JENKINS_SLAVE_AGENT_PORT: "${JENKINS_SLAVE_AGENT_PORT}"  
+      - JENKINS_SLAVE_AGENT_PORT=${JENKINS_SLAVE_AGENT_PORT}
   jenkins-slave:
     image: jenkins/inbound-agent:latest
     container_name: jenkins-slave
-    depends_on:
-      - jenkins
-    command: ["jenkins-agent"]
     environment:
-      - JENKINS_URL=http://jenkins:8080
+      - JENKINS_URL=http://jenkins-master:8080
       - JENKINS_SECRET=${JENKINS_SECRET}
       - JENKINS_AGENT_NAME=${JENKINS_AGENT_NAME}
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock     
-volumes:
-  jenkins_data:
+      - /var/run/docker.sock:/var/run/docker.sock

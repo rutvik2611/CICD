@@ -1,0 +1,53 @@
+# MASTER PRE-REQS
+# Install docker, docker-compose
+# mkdir -p ~/{jenkins,jnlp_slave}
+
+
+
+# master docker compose
+# cd ~/jenkins
+# docker-compose -f jenkins-master-docker-compose.yml up -d
+jenkins_master:
+  image: jenkins/jenkins:lts
+  container_name: jenkins
+  user: root
+  environment:
+    - TZ=America/Denver
+  restart: always
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /usr/bin/docker:/usr/bin/docker
+    - $HOME/jenkins:/var/jenkins_home
+  ports:
+    - 127.0.0.1:2345:2345
+    - 8080:8080
+    - 50000:50000
+
+# JENKINS MASTER CONFIG
+# TODO: document
+
+# SLAVE PRE-REQS
+# jenkins > manage jenkins > manage nodes > new node
+# node name > permanent agent / copy existing node
+# executors: 1
+# remote root: /var/jenkins_home
+# defaults for rest
+# select node from nodes list to get java launch opts w/secret hash
+
+
+# slave
+# docker run jenkins/jnlp-slave -url http://192.168.8.113:8080 <secret> <jenkins_slave>
+
+# slave docker compose
+# cd ~/jnlp_slave
+# docker-compose -f jenkins-slave-docker-compose.yml up -d
+jenkins_slave:
+  image: jenkins/jnlp-slave
+  container_name: jnlp_slave
+  user: root
+  command: -url http://192.168.8.113:8080 <secret> <jenkins_slave>
+  restart: always
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
+    - /usr/bin/docker:/usr/bin/docker
+    - $HOME/jnlp_slave:/var/jenkins_home
