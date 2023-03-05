@@ -27,7 +27,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "Setting random theme..."
 
     # Set random theme
-    sed -i 's/ZSH_THEME=.*/ZSH_THEME=random/' ~/.zshrc
+    sed -i 's/ZSH_THEME=.*/ZSH_THEME="random"/' ~/.zshrc
       
     echo "Changing default shell to zsh..."
 
