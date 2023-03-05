@@ -35,5 +35,5 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   fi
 else
   echo "This script is currently only supported on Linux OS."
+  exit 1
 fi
-
