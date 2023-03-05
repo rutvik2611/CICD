@@ -1,7 +1,7 @@
 version: '3'
 services:
   jenkins:
-    image: jenkins/jenkins:lts-jdk11
+    image: jenkins/jenkins:latest
     container_name: jenkins-master
     ports:
       - "${JENKINS_PORT}:8080"
@@ -11,7 +11,7 @@ services:
       JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
       JENKINS_SLAVE_AGENT_PORT: "${JENKINS_SLAVE_AGENT_PORT}"  
   jenkins-slave:
-    image: jenkins/inbound-agent:lts-jdk11
+    image: jenkins/inbound-agent:latest
     container_name: jenkins-slave
     depends_on:
       - jenkins
