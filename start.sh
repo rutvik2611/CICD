@@ -68,31 +68,32 @@ git clone https://github.com/rutvik2611/CICD.git
 
 cd CICD
 
-SCRIPTS=(*.sh)
 
-if [ ${#SCRIPTS[@]} -eq 0 ]; then
-    echo "No scripts found in this directory."
+
+script_dir="/root/CICD"
+
+# List all scripts in the directory and number them
+scripts=( $(ls "$script_dir") )
+for i in "${!scripts[@]}"; do 
+    echo "$i: ${scripts[$i]}"
+done
+
+# Ask user which script to run or to end the program
+echo -n "Enter the number of the script you want to run (or 'q' to quit): "
+read choice
+
+if [[ "$choice" == "q" ]]; then
+    echo "Exiting script selection."
 else
-    echo "Found the following scripts:"
-    for (( i = 0; i < ${#SCRIPTS[@]}; i++ )); do
-        echo "$((i+1)). ${SCRIPTS[$i]}"
-    done
+    # Verify that the user's input is a valid script number
+    re='^[0-9]+$'
+    if ! [[ $choice =~ $re ]] || [ "$choice" -ge "${#scripts[@]}" ]; then
+        echo "Invalid input. Please enter a valid script number."
+        exit 1
+    fi
 
-    while true; do
-        read -p "Which script would you like to run? Enter a number: " -n 1 choice
-        if ! [[ "$choice" =~ ^[0-9]+$ ]] || ((choice < 1 || choice > ${#SCRIPTS[@]})); then
-            echo "Invalid choice!"
-        else
-            echo "Running script: ${SCRIPTS[$((choice-1))]}"
-            ./${SCRIPTS[$((choice-1))]}
-
-            read -p "Would you like to run another script? (y/n) " answer
-            if [[ "$answer" =~ ^[Yy]$ ]]; then
-                continue
-            else
-                break
-            fi
-        fi
-    done
+    # Run the selected script
+    script_path="$script_dir${scripts[$choice]}"
+    bash "$script_path"
 fi
 
