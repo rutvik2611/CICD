@@ -67,25 +67,25 @@ echo "Installation process completed successfully!"
 echo "Cloning https://github.com/rutvik2611/CICD.git"
 git clone https://github.com/rutvik2611/CICD.git
 
-cd CICD
-
 
 
 script_dir="/root/CICD"
 
-# List all scripts in the directory and number them
-scripts=( $(ls "$script_dir") )
-for i in "${!scripts[@]}"; do 
-    echo "$i: ${scripts[$i]}"
-done
+while true; do
+  # List all scripts in the directory and number them
+  scripts=( $(ls "$script_dir") )
+  for i in "${!scripts[@]}"; do 
+      echo "$i: ${scripts[$i]}"
+  done
 
-# Ask user which script to run or to end the program
-echo -n "Enter the number of the script you want to run (or 'q' to quit): "
-read choice
+  # Ask user which script to run or to end the program
+  echo -n "Enter the number of the script you want to run (or 'q' to quit): "
+  read choice
 
-if [[ "$choice" == "q" ]]; then
+  if [[ "$choice" == "q" ]]; then
     echo "Exiting script selection."
-else
+    break
+  else
     # Verify that the user's input is a valid script number
     re='^[0-9]+$'
     if ! [[ $choice =~ $re ]] || [ "$choice" -ge "${#scripts[@]}" ]; then
@@ -96,5 +96,25 @@ else
     # Run the selected script
     script_path="$script_dir/${scripts[$choice]}"
     bash "$script_path"
-fi
+
+    # Ask user if they want to run another script or end the program
+    while true; do
+      echo -n "Do you want to run another script? ('y' for yes, 'n' for no) "
+      read response
+
+      case "$response" in
+        y|Y )
+          break
+          ;;
+        n|N )
+          echo "Exiting script selection."
+          exit 0
+          ;;
+        * )
+          echo "Invalid response. Please enter 'y' for yes or 'n' for no."
+          ;;
+      esac
+    done
+  fi
+done
 
