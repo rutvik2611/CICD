@@ -19,6 +19,22 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     # Install oh-my-zsh
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
       
+    
+      
+    echo "Changing default shell to zsh..."
+
+    # Change default shell to zsh
+    # read -p "Time to change your default shell to zsh? (Y/n): " response
+    if [[ "y" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        chsh -s $(which zsh)
+        echo "Your default shell has been changed to zsh. Please logout and login again in order for changes to take effect."
+    fi
+  
+    echo "Sourcing .zshrc to apply changes..."
+
+    # Source .zshrc to apply changes
+    source ~/.zshrc
+
     echo "Installing plugins..."
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -36,18 +52,6 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
 
     # Set random theme
     sed -i 's/ZSH_THEME=.*/ZSH_THEME="random"/' ~/.zshrc
-      
-    echo "Changing default shell to zsh..."
-
-    # Change default shell to zsh
-    read -p "Time to change your default shell to zsh? (Y/n): " response
-    if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        chsh -s $(which zsh)
-        echo "Your default shell has been changed to zsh. Please logout and login again in order for changes to take effect."
-    fi
-  
-    echo "Sourcing .zshrc to apply changes..."
-
     # Source .zshrc to apply changes
     source ~/.zshrc
     
