@@ -1,8 +1,8 @@
 pipeline {
     agent any
-    environment {
-        DOCKER_COMPOSE_VERSION = "1.29.2"
-    }
+    // environment {
+    //     DOCKER_COMPOSE_VERSION = "1.29.2"
+    // }
     stages {
         stage('Verify tooling') {
             steps {
