@@ -11,7 +11,7 @@ curl --silent -L https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/
 chsh -s $(which zsh)
 
 # Source .zshrc
-source ~/.zshrc
+# source ~/.zshrc
 
 echo "Oh My Zsh has been installed successfully!"
 echo "Installing plugins..."
@@ -32,7 +32,7 @@ echo "Setting random theme..."
 # Set random theme
 sed -i 's/ZSH_THEME=.*/ZSH_THEME="random"/' ~/.zshrc
 # Source .zshrc to apply changes
-source ~/.zshrc
+# source ~/.zshrc
 
 
 echo "List of scripts available:"
@@ -41,25 +41,25 @@ echo ""
 # Find all .sh files in the current directory and sub-folders
 find . -type f -iname "*.sh" | awk '{print NR". "$0}'
 
-# Ask user to select script number to run
-echo ""
-read -p "Which script would you like to run? (Enter the script number): " selected_script
+# # Ask user to select script number to run
+# echo ""
+# read -p "Which script would you like to run? (Enter the script number): " selected_script
 
-# Check if input given is a valid number or not
-regex='^[0-9]+$'
-if ! [[ $selected_script =~ $regex ]] ; then
-   echo "Invalid input! Exiting..." >&2; exit 1
-fi
+# # Check if input given is a valid number or not
+# regex='^[0-9]+$'
+# if ! [[ $selected_script =~ $regex ]] ; then
+#    echo "Invalid input! Exiting..." >&2; exit 1
+# fi
 
-# Execute the selected script file
-selected_script_file=$(find . -type f -iname "*.sh" | sed "${selected_script}q;d")
+# # Execute the selected script file
+# selected_script_file=$(find . -type f -iname "*.sh" | sed "${selected_script}q;d")
 
-if [[ "$selected_script_file" == "" ]]
-then
-    echo "Invalid script number. Exiting..."
-else
-    . $selected_script_file
-fi
+# if [[ "$selected_script_file" == "" ]]
+# then
+#     echo "Invalid script number. Exiting..."
+# else
+#     . $selected_script_file
+# fi
 
 while true
 do
@@ -84,7 +84,7 @@ do
 
     if [[ "$selected_script_file" == "" ]]
     then
-        echo "Invalid script number. Please try again."
+        echo "Invalid script number. Please try again." >&2; exit 1
     else
         . $selected_script_file
     fi
