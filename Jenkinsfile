@@ -1,19 +1,21 @@
 pipeline {
     agent {
-        docker { 
-            // ubuntu image wsadsaith docker preinstalled
-            image 'docker.io/library/ubuntu:latest' 
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        docker {
+            image 'node:12-alpine'
+            args '--user 1000:1000'
         }
     }
-
     stages {
-       stage('build') {
-          steps {
-             sh "docker --version"
-             sh "docker-compose --version"
-             // other build related steps..
-          }
-       }
+        stage('Build') {
+            steps {
+                sh 'npm install'
+                sh 'npm run build'
+            }
+        }
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+        }
     }
 }
