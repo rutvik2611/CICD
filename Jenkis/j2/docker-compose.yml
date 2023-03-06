@@ -19,7 +19,7 @@ services:
     restart: always
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/bin/docker:/usr/bin/docker
+      # - /usr/bin/docker:/usr/bin/docker
       - $HOME/jenkins:/var/jenkins_home
     ports:
       - 127.0.0.1:2345:2345
