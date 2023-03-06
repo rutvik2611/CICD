@@ -23,7 +23,7 @@ pipeline {
             steps {
                 // Build Docker image and push
                 sh 'docker --version'
-                sh 'docker-compose --version'
+                // sh 'docker-compose --version'
             }
         }
         stage('Deploy to QA') {
