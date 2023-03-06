@@ -1,21 +1,41 @@
 pipeline {
     agent any
+    // environment {
+    //     DOCKER_COMPOSE_VERSION = "1.29.2"
+    // }
     stages {
-        stage('Stage 1') {
+        stage('Verify tooling') {
             steps {
-                echo 'Executing Stage 1'
+                echo 'docker --version'
+                echo 'docker-compose --version'
             }
         }
-        stage('Stage 2') {
-            steps {
-                echo 'Executing Stage 2'
-            }
-        }
-        stage('Stage 3') {
-            steps {
-                echo 'Executing Stage 3'
-            }
-        }
+        // stage('Build image') {
+        //     steps {
+        //         // Build Docker image and push
+        //         sh 'docker --version'
+        //         sh 'docker-compose --version'
+        //     }
+        // }
+        // stage('Deploy to QA') {
+        //     when {
+        //         branch 'qa'
+        //     }
+        //     steps {
+        //         // Deploy to QA environment
+        //         sh 'docker --version'
+        //         sh 'docker-compose --version'
+        //     }
+        // }
+        // stage('Deploy to Production') {
+        //     when {
+        //         branch 'main'
+        //     }
+        //     steps {
+        //         // Deploy to production environment
+        //         sh 'docker --version'
+        //         sh 'docker-compose --version'
+        //     }
+        // }
     }
 }
-
