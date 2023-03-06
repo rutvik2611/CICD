@@ -8,21 +8,23 @@
 # master docker compose
 # cd ~/jenkins
 # docker-compose -f jenkins-master-docker-compose.yml up -d
-jenkins_master:
-  image: jenkins/jenkins:lts
-  container_name: jenkins
-  user: root
-  environment:
-    - TZ=America/Denver
-  restart: always
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
-    - /usr/bin/docker:/usr/bin/docker
-    - $HOME/jenkins:/var/jenkins_home
-  ports:
-    - 127.0.0.1:2345:2345
-    - 8080:8080
-    - 50000:50000
+version: '3'
+services:
+  jenkins_master:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    user: root
+    environment:
+      - TZ=America/Denver
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker
+      - $HOME/jenkins:/var/jenkins_home
+    ports:
+      - 127.0.0.1:2345:2345
+      - 8080:8080
+      - 50000:50000
 
 # JENKINS MASTER CONFIG
 # TODO: document
