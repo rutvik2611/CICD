@@ -12,10 +12,11 @@ pipeline {
         }
         stage('Verify Docker & Docker Compose') {
     steps {
+        echo 'sadasddocker --version'
         sh "docker --version"
-        echo 'docker --version'
+        echo 'asdasdsaddocker-compose --version'
         sh "docker-compose --version"
-        echo 'docker-compose --version'
+        echo 'docker-compose --versionasdasdasdsa'
     }
 }
         // stage('Build image') {
