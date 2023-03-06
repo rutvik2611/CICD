@@ -17,44 +17,81 @@ sudo apt-get install -yqq \
         ca-certificates \
         gnupg-agent \
         software-properties-common \
+        build-essential \
         apache2-utils \
         filezilla
 
 
 
-# Adding Docker’s official GPG key
-echo "Adding Docker’s official GPG key..."
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+# # Adding Docker’s official GPG key
+# echo "Adding Docker’s official GPG key..."
+# curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
-# Adding Docker repository for Ubuntu
-echo "Adding Docker repository for Ubuntu..."
-sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" <<< ''
-
-
-# Installing Docker engine
-echo "Installing Docker engine..."
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io
-
-# Installing Docker Compose
-echo "Installing Docker Compose..."
-sudo curl -sL "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
+# # Adding Docker repository for Ubuntu
+# echo "Adding Docker repository for Ubuntu..."
+# sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" <<< ''
 
 
+# # Installing Docker engine
+# echo "Installing Docker engine..."
+# sudo apt-get update
+# sudo apt-get install docker-ce docker-ce-cli containerd.io
 
-echo "Updating apt-get..."
-sudo apt-get update 
+# # Installing Docker Compose
+# echo "Installing Docker Compose..."
+# sudo curl -sL "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# sudo chmod +x /usr/local/bin/docker-compose
 
-echo "Installing Docker CE, Docker CLI and containerd.io..."
-sudo apt-get install docker-ce docker-ce-cli containerd.io -yqq
+#!/bin/bash
 
-echo "Downloading and installing Docker Compose..."
-sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&
-    sudo chmod +x /usr/local/bin/docker-compose &&
-    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+# Install required packages for compiling glibc
+# apt-get update
+# apt-get install -y build-essential git
+
+# Clone the glibc repository from GitHub
+git clone https://github.com/sgerrand/alpine-pkg-glibc.git /tmp/glibc
+
+# Compile and install glibc
+cd /tmp/glibc
+git checkout master
+./download-and-build.sh
+./install.sh
+
+# Cleanup
+cd /
+rm -rf /tmp/glibc
+
+# Add Docker's official GPG key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+
+# Add Docker repository for Ubuntu
+add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+# Update package list and install Docker
+apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io
+
+# Install Docker Compose
+COMPOSE_VERSION=$(curl --silent https://api.github.com/repos/docker/compose/releases/latest | grep -Po '"tag_name": "\K.*?(?=")')
+curl -L https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
 
 echo "Installation process completed successfully!"
+
+
+# echo "Updating apt-get..."
+# sudo apt-get update 
+
+# echo "Installing Docker CE, Docker CLI and containerd.io..."
+# sudo apt-get install docker-ce docker-ce-cli containerd.io -yqq
+
+# echo "Downloading and installing Docker Compose..."
+# sudo curl -L "https://github.com/docker/compose/releases/download/1.26.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose &&
+#     sudo chmod +x /usr/local/bin/docker-compose &&
+#     sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+# echo "Installation process completed successfully!"
+
+
 
 
 echo "Cloning https://github.com/rutvik2611/CICD.git"
