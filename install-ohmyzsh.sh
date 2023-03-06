@@ -20,11 +20,17 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
       
     echo "Installing plugins..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    git clone https://github.com/unixorn/fzf-zsh-plugin.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/fzf-zsh-plugin
 
     # Install plugins
-    plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo fzf thefuck autojump colored-man-pages extract wd common-aliases command-not-found)
+    plugins=(git zsh-autosuggestions zsh-syntax-highlighting sudo fzf-zsh-plugin colored-man-pages extract wd common-aliases command-not-found)
     plugins_line="plugins=(${plugins[@]})"
     sed -i "s/^plugins=.*/$plugins_line/" ~/.zshrc
+    sed -i '1s/^/export FZF_BASE=\/path\/to\/fzf\/install\/dir\n/' ~/.zshrc
+    
+
 
     echo "Setting random theme..."
 
