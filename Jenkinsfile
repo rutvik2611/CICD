@@ -13,7 +13,7 @@ pipeline {
         stage('Verify Docker & Docker Compose') {
     steps {
         echo 'sadasddocker --version'
-        sh "docker version"
+        sh "docker ps"
         echo 'asdasdsaddocker-compose --version'
         sh "docker compose version"
         echo 'docker-compose --versionasdasdasdsa'
