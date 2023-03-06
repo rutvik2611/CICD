@@ -1,0 +1,25 @@
+version: "3"
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    user: root
+    
+    ports:
+      - "8080:8080"
+      - "5000:5000"
+      - "3000:3000"
+
+    volumes:
+      - jenkins-home:/var/lib/jenkins
+
+    environment:
+      TZ: "America/New_York"
+      JENKINS_OPTS: "--httpPort=8080 --httpsPort=-1"
+
+networks:
+  jenkins-net:
+
+volumes:
+  jenkins-home:
+    driver: local
