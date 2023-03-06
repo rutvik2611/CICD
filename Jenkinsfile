@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker { 
-            // ubuntu image with docker preinstalled
+            // ubuntu image wsadsaith docker preinstalled
             image 'docker.io/library/ubuntu:latest' 
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
