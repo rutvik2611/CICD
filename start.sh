@@ -17,7 +17,8 @@ sudo apt-get install -yqq \
         ca-certificates \
         gnupg-agent \
         software-properties-common \
-        build-essential
+        build-essential \
+        gnupg lsb-release \
         apache2-utils \
         filezilla
 
