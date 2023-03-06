@@ -10,6 +10,12 @@ pipeline {
                 echo 'docker-compose --version'
             }
         }
+        stage('Verify Docker & Docker Compose') {
+    steps {
+        sh "docker --version"
+        sh "docker-compose --version"
+    }
+}
         // stage('Build image') {
         //     steps {
         //         // Build Docker image and push
