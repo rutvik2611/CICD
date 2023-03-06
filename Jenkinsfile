@@ -14,16 +14,16 @@ pipeline {
     steps {
         echo 'sadasddocker --version'
         sh "docker ps"
-        // echo 'asdasdsaddocker-compose --version'
-        // sh "docker-compose --version"
-        // echo 'docker-compose --versionasdasdasdsa'
+        echo 'asdasdsaddocker-compose --version'
+        sh "docker-compose --version"
+        echo 'docker-compose --versionasdasdasdsa'
     }
 }
         stage('Build image') {
             steps {
                 // Build Docker image and push
                 sh 'docker --version'
-                // sh 'docker-compose --version'
+                sh 'docker-compose --version'
             }
         }
         stage('Deploy to QA') {
@@ -33,7 +33,7 @@ pipeline {
             steps {
                 // Deploy to QA environment
                 sh 'docker --version'
-                // sh 'docker-compose --version'
+                sh 'docker-compose --version'
             }
         }
         stage('Deploy to Production') {
@@ -43,7 +43,7 @@ pipeline {
             steps {
                 // Deploy to production environment
                 sh 'docker --version'
-                // sh 'docker-compose --version'
+                sh 'docker-compose --version'
             }
         }
     }
