@@ -33,7 +33,7 @@ pipeline {
             steps {
                 // Deploy to QA environment
                 sh 'docker --version'
-                sh 'docker-compose --version'
+                // sh 'docker-compose --version'
             }
         }
         stage('Deploy to Production') {
@@ -43,7 +43,7 @@ pipeline {
             steps {
                 // Deploy to production environment
                 sh 'docker --version'
-                sh 'docker-compose --version'
+                // sh 'docker-compose --version'
             }
         }
     }
