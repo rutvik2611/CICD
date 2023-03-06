@@ -1,5 +1,11 @@
 pipeline {
-    agent any
+    agent {
+        docker { 
+            // ubuntu image with docker preinstalled
+            image 'docker.io/library/ubuntu:latest' 
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
     // environment {
     //     DOCKER_COMPOSE_VERSION = "1.29.2"
     // }
