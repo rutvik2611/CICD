@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Detect which OS this script is being run on
+# Detecft which OS this script is being run on
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then
   
   # Get the name of the Linux distribution
