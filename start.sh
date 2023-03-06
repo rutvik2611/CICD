@@ -10,7 +10,7 @@ echo "Updating apt-get..."
 sudo apt-get update 
 
 echo "Installing required packages: curl, git, apt-transport-https, ca-certificates, gnupg-agent, software-properties-common, apache2-utils and filezilla..."
-sudo apt-get install -yqq \
+yes " " | sudo apt-get install -yqq \
         curl \
         git \
         apt-transport-https \
@@ -23,6 +23,7 @@ sudo apt-get install -yqq \
         filezilla
 
 
+ 
 
 # Adding Docker’s official GPG key
 echo "Adding Docker’s official GPG key..."
@@ -73,7 +74,8 @@ echo "Installing Docker CE, Docker CLI and containerd.io..."
 echo "Installing Docker CE, Docker CLI and containerd.io..."
 echo "Installing Docker CE, Docker CLI and containerd.io..."
 echo "Installing Docker CE, Docker CLI and containerd.io..."
-sudo apt-get install docker-ce docker-ce-cli containerd.io -yqq
+sudo apt-get -yqq install docker-ce docker-ce-cli containerd.io 
+
 
 
 echo "Cloning https://github.com/rutvik2611/CICD.git"
