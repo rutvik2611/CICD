@@ -27,9 +27,9 @@ pipeline {
             }
         }
         stage('Deploy to QA') {
-            when {
-                branch 'qa'
-            }
+            // when {
+            //     branch 'qa'
+            // }
             steps {
                 // Deploy to QA environment
                 sh 'docker --version'
@@ -37,9 +37,9 @@ pipeline {
             }
         }
         stage('Deploy to Production') {
-            when {
-                branch 'main'
-            }
+            // when {
+            //     branch 'main'
+            // }
             steps {
                 // Deploy to production environment
                 sh 'docker --version'
