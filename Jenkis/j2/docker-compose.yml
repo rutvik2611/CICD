@@ -11,7 +11,7 @@
 version: '3'
 services:
   jenkins_master:
-    image: jenkins/jenkins:lts
+    image: mirekphd/jenkins-jdk17-on-ubuntu2204:latest
     container_name: jenkins
     user: root
     environment:
