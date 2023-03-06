@@ -13,7 +13,9 @@ pipeline {
         stage('Verify Docker & Docker Compose') {
     steps {
         sh "docker --version"
+        echo 'docker --version'
         sh "docker-compose --version"
+        echo 'docker-compose --version'
     }
 }
         // stage('Build image') {
