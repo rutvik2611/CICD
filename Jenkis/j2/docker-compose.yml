@@ -4,6 +4,7 @@
 
 
 
+
 # master docker compose
 # cd ~/jenkins
 # docker-compose -f jenkins-master-docker-compose.yml up -d
