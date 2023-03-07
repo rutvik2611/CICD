@@ -17,6 +17,5 @@ if [ "$response" -ne 200 ]; then
   exit 1
 fi
 
-# Clone the repository using the provided credentials
-git clone https://${username}:${password}@github.com/rutvik2611/data_config.git
+cd $HOME && git clone https://${username}:${password}@github.com/rutvik2611/data_config.git
 echo "Git login successful"
