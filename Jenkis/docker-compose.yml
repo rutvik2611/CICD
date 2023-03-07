@@ -28,7 +28,7 @@ services:
       - 50000:50000
 
 # JENKINS MASTER CONFIG
-# TODO: document d6b1d49eb82143fe855213665406b76f
+# TODO: document e1fad13267a34e3fa7ece555fa08915c
 
 # SLAVE PRE-REQS
 # jenkins > manage jenkins > manage nodes > new node
