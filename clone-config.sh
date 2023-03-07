@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Prompt for username and password
-read -p "Enter your Git username: " username
+export username=rutvik2611
 read -s -p "Enter your Git password or personal access token: " password
 
 echo ""
@@ -17,5 +17,5 @@ if [ "$response" -ne 200 ]; then
   exit 1
 fi
 
-cd $HOME && git clone https://${username}:${password}@github.com/rutvik2611/data_config.git
+cd $HOME && git clone https://rutvik2611:${password}@github.com/rutvik2611/data_config.git
 echo "Git login successful"
