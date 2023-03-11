@@ -49,7 +49,7 @@ services:
 #     networks:
 #       - proxy
     volumes:
-      - /root:/root
+      - /:/root
     restart: unless-stopped
 # networks:
 #   proxy:
