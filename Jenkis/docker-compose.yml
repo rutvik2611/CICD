@@ -31,8 +31,8 @@ services:
   code-server:
     image: lscr.io/linuxserver/code-server:latest
     container_name: code-server
-#     port:
-#       - 8443:8443
+    ports:
+      - 8443:8443
     environment:
       - PUID=1000
       - PGID=1000
