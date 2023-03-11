@@ -27,6 +27,34 @@ services:
       - 8080:8080
       - 50000:50000
 
+
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    port:
+      - 8443:8443
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=merica/NewYork
+      - PASSWORD=1234 #optional
+      - SUDO_PASSWORD=1234xShare #optional
+#       - PROXY_DOMAIN=code.${DOMAIN} #optional
+      - DEFAULT_WORKSPACE=/root #optional
+    labels:
+#       - "traefik.enable=true"
+#       - "traefik.http.routers.code.entrypoints=https"
+#       - "traefik.http.routers.code.rule=Host(`code.${DOMAIN}`)"
+#       - "traefik.http.services.code.loadbalancer.server.port=8443"
+#     networks:
+#       - proxy
+    volumes:
+      - /root:/root
+    restart: unless-stopped
+# networks:
+#   proxy:
+#     external: true
+
 # JENKINS MASTER CONFIG
 # TODO: document 
 
